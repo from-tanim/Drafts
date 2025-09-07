@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE KING OF COX - Premier Convention Hall</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #1a365d;
+            --secondary: #d4af37;
+            --accent: #2b6cb0;
+            --light: #f8f9fa;
+            --dark: #2d3748;
+            --gray: #718096;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Venue Spaces */
+        .venue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .venue-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .venue-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .venue-img {
+            height: 200px;
+            background-color: #ddd;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .venue-info {
+            padding: 20px;
+        }
+        
+        .specs {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+        
+        .spec-item {
+            text-align: center;
+        }
+        
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .spec-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            background-color: #ddd;
+            background-position: center;
+            background-size: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin: 0 15px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            margin-top: 15px;
+            color: var(--gray);
+            display: none;
+        }
+        
+        .faq-active .faq-answer {
+            display: block;
+        }
+        
+        /* Contact Form */
+        .contact {
+            background-color: var(--light);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-heading {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">THE KING OF COX</div>
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#venue">Venue</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>THE KING OF COX CONVENTION HALL</h1>
+            <p>Where extraordinary events become legendary experiences. Premium venue for weddings, corporate events, and special celebrations.</p>
+            <a href="#contact" class="btn">Book Your Event</a>
+            <a href="#venue" class="btn btn-outline">Explore Venue</a>
+        </div>
+    </section>
+
+    <!-- Venue & Space Information -->
+    <section id="venue">
+        <div class="container">
+            <h2>Venue & Space Information</h2>
+            <p class="text-center">Our versatile spaces can accommodate events of all sizes and types, from intimate gatherings to grand celebrations.</p>
+            
+            <div class="venue-grid">
+                <!-- Grand Ballroom -->
+                <div class="venue-card">
+                    <div class="venue-img" style="background-image: url('https://placehold.co/600x400');"></div>
+                    <div class="venue-info">
+                        <h3>Grand Ballroom</h3>
+                        <p>The crown jewel of our venue, featuring elegant chandeliers and state-of-the-art facilities.</p>
+                        <div class="specs">
+                            <div class="spec-item">
+                                <div class="spec-value">500</div>
+                                <div class="spec-label">Banquet</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">800</div>
+                                <div class="spec-label">Theater</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">400</div>
+                                <div class="spec-label">Classroom</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Conference Center -->
+                <div class="venue-card">
+                    <div class="venue-img" style="background-image: url('https://placehold.co/600x400');"></div>
+                    <div class="venue-info">
+                        <h3>Conference Center</h3>
+                        <p>Perfect for corporate events with advanced technology and flexible setup options.</p>
+                        <div class="specs">
+                            <div class="spec-item">
+                                <div class="spec-value">200</div>
+                                <div class="spec-label">Banquet</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">300</div>
+                                <div class="spec-label">Theater</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">150</div>
+                                <div class="spec-label">Classroom</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Outdoor Pavilion -->
+                <div class="venue-card">
+                    <div class="venue-img" style="background-image: url('https://placehold.co/600x400');"></div>
+                    <div class="venue-info">
+                        <h3>Outdoor Pavilion</h3>
+                        <p>A beautiful open-air space surrounded by landscaped gardens, perfect for summer events.</p>
+                        <div class="specs">
+                            <div class="spec-item">
+                                <div class="spec-value">300</div>
+                                <div class="spec-label">Reception</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">400</div>
+                                <div class="spec-label">Ceremony</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-value">200</div>
+                                <div class="spec-label">Seated</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="#" class="btn">Download Floor Plans</a>
+                <a href="#" class="btn btn-outline">View Technical Specifications</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Packages -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Services & Packages</h2>
+            <p class="text-center">We offer comprehensive event solutions tailored to your specific needs and vision.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💒</div>
+                    <h3>Wedding Packages</h3>
+                    <p>All-inclusive wedding packages designed to make your special day truly memorable.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional event solutions for conferences, meetings, and corporate celebrations.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎉</div>
+                    <h3>Social Events</h3>
+                    <p>Perfect venues for birthdays, anniversaries, galas, and other special occasions.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <h3>Catering Services</h3>
+                    <p>Exquisite culinary experiences crafted by our award-winning chef and team.</p>
+                    <a href="#" class="btn btn-outline">View Menus</a>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="#contact" class="btn">Request a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+        <div class="container">
+            <h2>Event Gallery</h2>
+            <p class="text-center">Browse through our collection of memorable events hosted at our venue.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+                <div class="gallery-item" style="background-image: url('https://placehold.co/400x400');"></div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="#" class="btn">View Full Gallery</a>
+                <a href="#" class="btn btn-outline">Take Virtual Tour</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "The King of Cox provided the perfect setting for our annual conference. The staff was incredibly professional, the facilities were top-notch, and our attendees were thoroughly impressed."
+                    </div>
+                    <div class="testimonial-author">- Sarah Johnson, TechConnect Inc.</div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="#" class="btn">Read More Testimonials</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">What is the maximum capacity of your venue? <span>+</span></div>
+                    <div class="faq-answer">
+                        Our Grand Ballroom can accommodate up to 800 guests in theater-style seating, 500 for banquets, and 400 in classroom setup. For larger events, we can utilize multiple spaces simultaneously.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Do you provide in-house catering? <span>+</span></div>
+                    <div class="faq-answer">
+                        Yes, we have an exceptional in-house catering team led by our executive chef. We offer a variety of menu options and can accommodate dietary restrictions and special requests.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I bring my own vendors? <span>+</span></div>
+                    <div class="faq-answer">
+                        While we have preferred vendors we work with regularly, you're welcome to bring your own vendors for certain services. All external vendors must be approved in advance and carry proper insurance.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What is your cancellation policy? <span>+</span></div>
+                    <div class="faq-answer">
+                        Our cancellation policy varies based on the type of event and how far in advance you're canceling. Generally, deposits are non-refundable if canceled within 90 days of the event. Please contact us for specific details related to your event.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is parking available for guests? <span>+</span></div>
+                    <div class="faq-answer">
+                        Yes, we have ample complimentary parking for up to 500 vehicles. We also offer valet service for an additional fee.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p class="text-center">Ready to plan your event? Reach out to our team for more information or to schedule a tour.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <h3>Get In Touch</h3>
+                    <p>Our event specialists are ready to help you create an unforgettable experience.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <h4>Address</h4>
+                        <p>123 Prestige Avenue, Luxury District<br>Metropolis, MX 10001</p>
+                        
+                        <h4>Phone</h4>
+                        <p>(555) 123-4567</p>
+                        
+                        <h4>Email</h4>
+                        <p>events@kingofcox.com</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-type">Event Type</label>
+                            <select id="event-type" class="form-control" required>
+                                <option value="">Select Event Type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="conference">Conference</option>
+                                <option value="social">Social Event</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-date">Preferred Event Date</label>
+                            <input type="date" id="event-date" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-heading">THE KING OF COX</h3>
+                    <p>Premier convention and event venue dedicated to creating unforgettable experiences for all occasions.</p>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#venue">Venue Spaces</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li>123 Prestige Avenue, Luxury District</li>
+                        <li>Metropolis, MX 10001</li>
+                        <li>(555) 123-4567</li>
+                        <li>events@kingofcox.com</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">YT</a>
+                        <a href="#">LI</a>
+                    </div>
+                    
+                    <h3 class="footer-heading" style="margin-top: 20px;">Newsletter</h3>
+                    <p>Subscribe for updates and event planning tips</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" class="form-control" style="margin-top: 10px;">
+                        <button type="submit" class="btn" style="margin-top: 10px; width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 THE KING OF COX Convention Hall. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('faq-active');
+            });
+        });
+        
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            this.reset();
+        });
+        
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('main-nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
