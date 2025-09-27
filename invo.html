@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .invitation-section {
+            padding: 40px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+        
+        h1 {
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #636e72;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .password-form {
+            margin: 30px 0;
+        }
+        
+        .password-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .password-input:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+        
+        .submit-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background: #5b4bc4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        .message {
+            margin-top: 15px;
+            min-height: 24px;
+            font-weight: 500;
+        }
+        
+        .error {
+            color: #e74c3c;
+        }
+        
+        .success {
+            color: #27ae60;
+        }
+        
+        .image-section {
+            padding: 40px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        .revealed-image {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .image-caption {
+            color: #636e72;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .reset-btn {
+            background: transparent;
+            color: #6c5ce7;
+            border: 2px solid #6c5ce7;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .reset-btn:hover {
+            background: #6c5ce7;
+            color: white;
+        }
+        
+        .heart {
+            color: #e84393;
+            font-size: 1.5rem;
+            margin: 0 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .invitation-section, .image-section {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invitation-section" id="invitationSection">
+            <h1>Invitation<span class="heart">❤️</span></h1>
+            <p class="subtitle">You've been invited to something truly special. To see what awaits, please enter the secret password.</p>
+            
+            <div class="password-form">
+                <input type="password" class="password-input" id="passwordInput" placeholder="Enter the secret password">
+                <br>
+                <button class="submit-btn" id="submitBtn">Reveal the Secret</button>
+                <div class="message" id="message"></div>
+            </div>
+        </div>
+        
+        <div class="image-section" id="imageSection">
+            <h1>Your Special Invitation <span class="heart">💝</span></h1>
+            <img src="https://i.ibb.co.com/bgpGyWrX/apu-2-1.png" alt="Special Invitation" class="revealed-image" id="revealedImage">
+          
+            <button class="reset-btn" id="resetBtn">Go Back</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const invitationSection = document.getElementById('invitationSection');
+        const imageSection = document.getElementById('imageSection');
+        const passwordInput = document.getElementById('passwordInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const message = document.getElementById('message');
+        const resetBtn = document.getElementById('resetBtn');
+        const revealedImage = document.getElementById('revealedImage');
+        
+        // Correct password (you can change this to whatever you want)
+        const correctPassword = "forever";
+        
+        // Array of romantic/thoughtful images to choose from
+        const imageOptions = [
+            "https://i.ibb.co.com/bgpGyWrX/apu-2-1.png",
+            
+        ];
+        
+        // Event listener for submit button
+        submitBtn.addEventListener('click', checkPassword);
+        
+        // Event listener for Enter key in password field
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // Event listener for reset button
+        resetBtn.addEventListener('click', resetPage);
+        
+        // Function to check the password
+        function checkPassword() {
+            const enteredPassword = passwordInput.value.trim();
+            
+            // Clear previous messages
+            message.textContent = '';
+            message.className = 'message';
+            
+            if (enteredPassword === '') {
+                message.textContent = 'Please enter a password';
+                message.className = 'message error';
+                return;
+            }
+            
+            if (enteredPassword === correctPassword) {
+                // Success - show the image section
+                message.textContent = 'Password correct! Revealing your invitation...';
+                message.className = 'message success';
+                
+                // Select a random image from the options
+                const randomIndex = Math.floor(Math.random() * imageOptions.length);
+                revealedImage.src = imageOptions[randomIndex];
+                
+                // Wait a moment then show the image section
+                setTimeout(() => {
+                    invitationSection.style.display = 'none';
+                    imageSection.style.display = 'block';
+                }, 1500);
+            } else {
+                // Incorrect password
+                message.textContent = 'Incorrect password. Please try again.';
+                message.className = 'message error';
+                
+                // Shake animation for wrong password
+                passwordInput.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 500);
+            }
+        }
+        
+        // Function to reset the page
+        function resetPage() {
+            imageSection.style.display = 'none';
+            invitationSection.style.display = 'block';
+            passwordInput.value = '';
+            message.textContent = '';
+            message.className = 'message';
+        }
+        
+        // Add shake animation for wrong password
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
